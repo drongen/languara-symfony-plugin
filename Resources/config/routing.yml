@@ -1,0 +1,5 @@
+_demo:
+    resource: "@LanguaraSyncBundle/Controller/LanguaraController.php"
+    type:     annotation
+    prefix:   /languara
+
