@@ -1,0 +1,26 @@
+{
+    "name": "languara/symfony-plugin",
+    "keywords": ["Languara", "symfony"],
+    "homepage": "http://languara.com",
+    "description": "Languara integration plugin for Symfony 2.5. Easily synchronize your content with Languara.",
+    "authors": [
+        {
+            "name": "Aleksandar Tufekciev",
+            "email": "aleksandar@languara.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Languara": "SyncBundle/"
+        }
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
