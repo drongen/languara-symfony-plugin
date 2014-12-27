@@ -1,5 +1,5 @@
 {
-    "name": "Languara/SymfonyBundle",
+    "name": "languara/symfonybundle",
     "keywords": ["Languara", "symfony"],
     "homepage": "http://languara.com",
     "description": "Languara integration plugin for Symfony 2.5. Easily synchronize your content with Languara.",
