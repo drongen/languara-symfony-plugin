@@ -12,6 +12,13 @@
     "require": {
         "php": ">=5.4.0"
     },
+    
+    "autoload": {
+        "psr-0": {
+            "languara\\symfonyplugin": ""
+        }
+    },
+    
     "minimum-stability": "stable",
     "extra": {
         "branch-alias": {
