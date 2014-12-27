@@ -1,13 +1,13 @@
 <?php
 
-namespace Languara\SyncBundle\Controller;
+namespace Languara\SymfonyBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Languara\SyncBundle\Library;
+use Languara\SymfonyBundle\Library;
 
 class LanguaraController extends Controller
 {    

@@ -1,6 +1,6 @@
 <?php
 
-namespace Languara\SyncBundle\Library;
+namespace Languara\SymfonyBundle\Library;
 
 include_once 'lib_languara.php';
 

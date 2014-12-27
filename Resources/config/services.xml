@@ -6,7 +6,7 @@
 
     <!--
     <services>
-        <service id="languara_sync.example" class="Languara\SyncBundle\Example">
+        <service id="languara_sync.example" class="Languara\SymfonyBundle\Example">
             <argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>

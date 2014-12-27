@@ -1,6 +1,6 @@
 <?php
 
-namespace Languara\SyncBundle\DependencyInjection;
+namespace Languara\SymfonyBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

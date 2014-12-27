@@ -1,12 +1,12 @@
 <?php
 
-namespace Languara\SyncBundle\Command;
+namespace Languara\SymfonyBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Languara\SyncBundle\Library;
+use Languara\SymfonyBundle\Library;
 
 class PushCommand extends ContainerAwareCommand
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Languara\SyncBundle\DependencyInjection;
+namespace Languara\SymfonyBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
