@@ -1,5 +1,5 @@
 {
-    "name": "languara/symfonyplugin",
+    "name": "Languara/SymfonyBundle",
     "keywords": ["Languara", "symfony"],
     "homepage": "http://languara.com",
     "description": "Languara integration plugin for Symfony 2.5. Easily synchronize your content with Languara.",
@@ -14,8 +14,8 @@
     },
     
     "autoload": {
-        "psr-0": {
-            "languara\\symfonyplugin": ""
+        "psr-4": {
+            "Languara\\SymfonyBundle": ""
         }
     },
     
