@@ -8,14 +8,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Languara\SyncBundle\Library;
 
-/**
- * Hello World command for demo purposes.
- *
- * You could also extend from Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand
- * to get access to the container via $this->getContainer().
- *
- * @author Tobias Schultze <http://tobion.de>
- */
 class PullCommand extends ContainerAwareCommand
 {
     /**
@@ -45,7 +37,7 @@ EOF
         }
         catch(\Exception $e)
         {
-           $output->writeln(($e->getMessage()));
+           $output->writeln('<error>'. ($e->getMessage()) .'</error>');
            return;
         }
         

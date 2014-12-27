@@ -38,8 +38,18 @@ class Lib_Languara
 			return false;
 		}
         
+        // get local translations
+        if (php_sapi_name() == "cli") {
+            print $this->color_text("Retrieving local data!", 'SUCCESS'). PHP_EOL;
+            sleep(2);
+        }
 		$arr_translations = $this->retrive_local_translations();		
         
+        // get project locales
+        if (php_sapi_name() == "cli") {
+            print $this->color_text("Pushing locales and translations to the Languara servers!", 'SUCCESS'). PHP_EOL;
+            sleep(2);
+        }
 		$this->fetch_endpoint_data('upload_translations', $arr_translations, 'post', true);
 	}
 	
@@ -99,16 +109,22 @@ class Lib_Languara
 		// sanity checks
 		if (! is_dir($this->language_location))
 		{
-            throw new \Exception('Language directory not found! '. $this->language_location);
+            throw new \Exception('Language directory not found, check the location of the language directory in the config file and try again!');
 			return false;
 		}
 		
 		if (! is_writable($this->language_location))
 		{
-            throw new \Exception('Language directory is not writable!');
+            throw new \Exception('Language directory is not writable, make sure the proper permission are set!');
 			return false;
 		}
-		
+        
+		// back up local data
+        if (php_sapi_name() == "cli") {
+            print $this->color_text("Backing up local data!", 'SUCCESS'). PHP_EOL;
+            sleep(2);
+        }
+        
 		// create back dir if it doesn't exist
 		$this->create_dir($this->language_location, 'language_backup');
 		
@@ -123,21 +139,47 @@ class Lib_Languara
 		$this->zip->close();
 		
 		// remove local translations
+        if (php_sapi_name() == "cli") {
+            print $this->color_text("Removing local files!", 'SUCCESS'). PHP_EOL;
+            sleep(2);
+        }
 		$this->remove_local_translations($this->language_location);
 		
 		$endpoint_postfix = '';
 		if ($this->env == 'development') $endpoint_postfix = '_local';
 		
+        // get project locales
+        if (php_sapi_name() == "cli") {
+            print $this->color_text("Retrieving all languages from the server!", 'SUCCESS'). PHP_EOL;
+            sleep(2);
+        }
 		$this->arr_project_locales	= $this->fetch_endpoint_data('project_locale'. $endpoint_postfix, null, 'get', true);
-		$this->arr_resource_groups	= $this->fetch_endpoint_data('resource_group'. $endpoint_postfix, null, 'get', true);
-		$this->arr_translations		= $this->fetch_endpoint_data('translation'. $endpoint_postfix, null, 'get', true);
 
 		if (!$this->arr_project_locales)
 		{
-            throw new \Exception('Failed to load project locales, or no locales defined for the project');
+            throw new \Exception('Project has no languages, add some languages on Languara and then try pulling your content!');
 			return false;
 		}
+        
+        // get project resource groups
+        if (php_sapi_name() == "cli") {
+            print $this->color_text("Retrieving all resource groups from the server!", 'SUCCESS'). PHP_EOL;
+            sleep(2);
+        }
+		$this->arr_resource_groups	= $this->fetch_endpoint_data('resource_group'. $endpoint_postfix, null, 'get', true);
+        
+        // get project translations
+        if (php_sapi_name() == "cli") {
+            print $this->color_text("Retrieving all translations from the server!", 'SUCCESS'). PHP_EOL;
+            sleep(2);
+        }
+		$this->arr_translations		= $this->fetch_endpoint_data('translation'. $endpoint_postfix, null, 'get', true);
 		
+        // get project translations
+        if (php_sapi_name() == "cli") {
+            print $this->color_text("Adding content to local files!", 'SUCCESS'). PHP_EOL;
+            sleep(2);
+        }
 		$this->add_translations_to_files();
 		
 		return true;
@@ -213,7 +255,7 @@ class Lib_Languara
             $error = array_key_exists('errors', $result);
             
             // if the request faild throw an exception
-            if ($error) throw new \Exception('ERROR: '. current(current($result->errors)));
+            if ($error) throw new \Exception('SERVER ERROR: '. current(current($result->errors)));
             
         } 
         else 
@@ -417,6 +459,24 @@ class Lib_Languara
         
         return $content;
     }
+    
+    protected function color_text($text, $status)
+    {
+        $out = "";
+        switch ($status)
+        {
+            case "SUCCESS":
+                $out = "[0;32m"; //Green background
+                break;
+            case "FAILURE":
+                $out = "[0;31m"; //Red background
+                break;
+            default:
+            $out = "[0m"; //White background
+        }
+        
+        return chr(27) . "$out" . "$text" . chr(27) . "[0m";
+    }
 }
 
-/* End of file Lang_languara.php */
+/* End of file Lib_languara.php */
