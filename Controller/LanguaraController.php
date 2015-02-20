@@ -31,6 +31,14 @@ class LanguaraController extends Controller
             return $response;
         }
         
+        // if the request is only to test the connection no need to proceed with the pulling of content
+        if ($this->get('request')->request->get('test_connection_ind') !== null && $this->get('request')->request->get('test_connection_ind') == true)
+        {
+            echo 1;        
+            return $response;
+        }
+           
+        
         try
         {
             $lib_languara->download_and_process();
